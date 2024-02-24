@@ -22,8 +22,8 @@ class PropertyController extends Controller
             'price' => 'required',
             'type' => 'required|in:apartment,villa,townhouse',
             'status' => 'required|in:sold,leased,available'
-          ]);
-
+        ]);
+        
         $property = Property::create([
             'title' => $request->title,
             'address' => $request->address,
@@ -33,15 +33,21 @@ class PropertyController extends Controller
             'type' => $request->type,
             'status' => $request->status
         ]);
-
         if($property){
             return response()->json([
-                'status' => 200,
+                'status' => 201,
                 'message' => "Property Created Successfully"
-            ], 200);
-        } 
+            ], 201);
+        } else {
+            return response()->json([
+                'status' => 422,
+                'message' => "Failed Property Rules"
+            ], 422);
+        }
         
     }
+
+
 
     public function show($id)
     {
