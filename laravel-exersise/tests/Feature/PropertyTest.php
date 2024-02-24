@@ -29,13 +29,13 @@ class PropertyTest extends TestCase
     }
     public function test_update(): void
     {
-        $response = $this->put('/api/properties/7/edit', 
+        $response = $this->put('/api/properties/135/edit', 
         ['title' => '4 bedroom apartment', 'address' =>'10 George Street', 'price' => 7000, 'bedrooms'=> 4, 'bathrooms'=> 3, 'type'=> 'apartment', 'status'=> 'available']);
         $response->assertStatus(200);
     }
     public function test_get_property(): void
     {
-        $response = $this->get('/api/properties/10');
+        $response = $this->get('/api/properties/136');
         $response->assertStatus(200);
     }
     public function test_get_all_properties(): void
@@ -45,7 +45,7 @@ class PropertyTest extends TestCase
     }
     public function test_delete(): void
     {
-        $response = $this->delete('/api/properties/22/delete');
+        $response = $this->delete('/api/properties/140/delete');
         $response->assertStatus(200);
 
     }
