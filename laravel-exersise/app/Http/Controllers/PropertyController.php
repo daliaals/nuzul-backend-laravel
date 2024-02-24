@@ -4,23 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Property;
+use App\Http\Resources\PropertyResource;
 
 class PropertyController extends Controller
 {
     public function index()
     {
         $properties = Property::all();
-        if($properties -> count() > 0){
-            return response()->json([
-                'status' => 200,
-                'properties' => $properties
-            ], 200);
-        } else {
-            return response()->json([
-                'status' => 404,
-                'message' => 'No Properties Found'
-            ], 404);
-        }
+        return PropertyResource::collection($properties);
     }
 
     public function store(Request $request)
