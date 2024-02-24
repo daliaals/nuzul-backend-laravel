@@ -25,6 +25,13 @@ class PropertyController extends Controller
 
     public function store(Request $request)
     {
+        $request->validate([
+            'title' => 'required',
+            'address' => 'required',
+            'price' => 'required',
+            'type' => 'required|in:apartment,villa,townhouse',
+            'status' => 'required|in:sold,leased,available'
+          ]);
 
         $property = Property::create([
             'title' => $request->title,
